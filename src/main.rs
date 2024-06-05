@@ -72,4 +72,14 @@ fn main() {
         "PointMuliGenerics mixing generics result: {:?}",
         will_work.mixup(getting_crazy_with_it)
     );
+    // Note generics will not slow your code becuase of Monomorphization. Meaning the compiler
+    // looks and generates chunks of code for each specific type it sees the user has it there
+    // program. This is great but means you cannot rely on it when taking user input becuase no
+    // types are given at compile time. The user could enter a integer float, String etc... at
+    // least that is my understanding. With rusts strict type system it may be fine becuase you
+    //                                                                 _---_
+    // will be specifing the type the user will use for input anyway. /().()\
+    //                                                                |  ^  |
+    //                                                                 \   /
+    //                                                                      <-- Owl Feet go here
 }
