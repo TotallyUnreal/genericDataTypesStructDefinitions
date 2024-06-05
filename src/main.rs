@@ -1,8 +1,10 @@
+#[derive(Debug)]
 struct Point<T> {
     x: T,
     y: T,
 }
 
+#[derive(Debug)]
 struct PointMuliGenerics<T, U> {
     x: T,
     y: U,
@@ -31,6 +33,15 @@ impl Point<f64> {
     }
 }
 
+impl<X1, Y1> PointMuliGenerics<X1, Y1> {
+    fn mixup<X2, Y2>(self, other: PointMuliGenerics<X2, Y2>) -> PointMuliGenerics<X1, Y2> {
+        PointMuliGenerics {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+
 fn main() {
     let integer = Point { x: 5, y: 10 };
     let float: Point<f32> = Point { x: 10.0, y: 19.9 };
@@ -53,5 +64,12 @@ fn main() {
     println!(
         "Overridden distance_from_origin function for f64 point structure: {}",
         float_f64.distance_from_origin()
+    );
+
+    let getting_crazy_with_it = PointMuliGenerics { x: 'x', y: 'y' };
+
+    println!(
+        "PointMuliGenerics mixing generics result: {:?}",
+        will_work.mixup(getting_crazy_with_it)
     );
 }
